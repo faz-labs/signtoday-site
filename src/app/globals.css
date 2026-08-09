@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  body {
+    color: #1f2937;
+    background-color: #ffffff;
+    overflow-x: hidden;
+  }
+}
+
+.hero-overlay {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.btn-purple {
+  background-color: #6a1b9a;
+  color: white;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-purple:hover {
+  background-color: #4a148c;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(106, 27, 154, 0.25);
+}
+
+.btn-outline {
+  border: 1px solid #ccc;
+  color: #333;
+  background-color: transparent;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-outline:hover {
+  border-color: #6a1b9a;
+  color: #6a1b9a;
+  background-color: rgba(106, 27, 154, 0.04);
+  transform: translateY(-1px);
+}
+
+.section-bg-light {
+  background-color: #f5f5f5;
+}
+
+.section-bg-white {
+  background-color: #ffffff;
+}
+
+/* Scrollbar polish */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #6a1b9a;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4a148c;
+}
