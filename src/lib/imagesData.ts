@@ -9,7 +9,7 @@
 export const IMAGES = {
   // Hero Section Background
   heroBg:
-    'https://lh3.googleusercontent.com/aida-public/AB6AXuCpSe0ZX6WbXgb4QwiIZ0etauXZTvQgncv9WY7pvavRPvTuCrXGp1qoV3zu339m4c0h0H3V0x7tjOWEjT-2b-TYw8pLbTPgr6HyU2VXCNBe5bkg7nL2JcfZoRiRisgZNqzaj9kLODTLKipIyu9stsviEk9GaQtTiMluv8CtLaoUGfaSiBnZ9oTxFxeoDaATqoeDUtxbv1EGKeOeq3ReJJWSwFmLJOSqVo8wtnTtf0N0hyvL_rl34cEvlA',
+    'https://ssl.nettl.dev/uk/CategoryPages/T1Q/images/Artboard%201.jpg',
 
   // Foamex Boards Section (.webp local files supported)
   foamex: {
