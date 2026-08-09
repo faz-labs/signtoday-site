@@ -13,7 +13,7 @@ export const Header: React.FC = () => {
   const telHref = 'tel:03300103521';
 
   return (
-    <header className="w-full relative z-40">
+    <header className="w-full sticky top-0 z-50 shadow-md">
       {/* Top Bar with Direct Phone Call */}
       <div className="bg-[#4a148c] text-white py-2 px-3 sm:px-6 text-xs flex flex-wrap justify-between sm:justify-end items-center gap-2 sm:gap-6">
         <div className="flex items-center gap-3 sm:gap-6 w-full sm:w-auto justify-between sm:justify-end">

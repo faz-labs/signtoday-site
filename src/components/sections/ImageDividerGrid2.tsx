@@ -6,10 +6,13 @@ import { IMAGES } from '@/lib/imagesData';
 
 export const ImageDividerGrid2: React.FC = () => {
   return (
-    <div className="w-full bg-gray-900 overflow-hidden p-0 m-0">
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-0 w-full p-0 m-0">
+    <div className="w-full bg-white overflow-hidden py-4 sm:py-6 px-2 sm:px-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-2 w-full max-w-[1800px] mx-auto">
         {IMAGES.gridDivider2.map((src, idx) => (
-          <div key={idx} className="overflow-hidden group flex justify-center items-center p-0 m-0">
+          <div
+            key={idx}
+            className="overflow-hidden group flex justify-center items-center p-0 m-0 last:sm:col-span-2 lg:last:col-span-1 justify-self-center w-full"
+          >
             <SafeImage
               src={src}
               alt={`Sign Showcase Divider ${idx + 1}`}

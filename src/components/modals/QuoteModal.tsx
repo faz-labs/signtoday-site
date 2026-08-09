@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useApp } from '@/context/AppContext';
-import { X, Send, CheckCircle2, FileText } from 'lucide-react';
+import { X, CheckCircle2, FileText, MessageCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export const QuoteModal: React.FC = () => {
@@ -30,12 +30,34 @@ export const QuoteModal: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Construct clean WhatsApp message text with standard bullet points
+    const messageLines = [
+      `*Hello Sign Today! I would like to request a quote:*`,
+      ``,
+      `• *Name:* ${formData.name}`,
+      `• *Email:* ${formData.email.trim() ? formData.email : 'Not provided'}`,
+      `• *Phone:* ${formData.phone.trim() ? formData.phone : 'Not provided'}`,
+      `• *Product / Substrate:* ${formData.signType}`,
+      formData.width || formData.height
+        ? `• *Dimensions:* ${formData.width || 'N/A'}mm x ${formData.height || 'N/A'}mm`
+        : null,
+      formData.notes ? `• *Project Details:* ${formData.notes}` : null,
+    ].filter(Boolean);
+
+    const fullMessage = messageLines.join('\n');
+    const whatsappUrl = `https://wa.me/447709135506?text=${encodeURIComponent(fullMessage)}`;
+
+    // Open WhatsApp link
+    window.open(whatsappUrl, '_blank');
+
     setSubmitted(true);
+    showToast('Redirecting to WhatsApp to send your quote...');
+
     setTimeout(() => {
-      showToast('Quote request submitted successfully!');
       setSubmitted(false);
       setIsQuoteModalOpen(false);
-    }, 2000);
+    }, 2500);
   };
 
   return (
@@ -57,6 +79,7 @@ export const QuoteModal: React.FC = () => {
               exit={{ scale: 0.95, opacity: 0 }}
               className="bg-white rounded-xl shadow-2xl w-full max-w-lg overflow-hidden flex flex-col max-h-[90vh]"
             >
+              {/* Header */}
               <div className="bg-[#4a148c] text-white px-6 py-4 flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <FileText className="w-5 h-5 text-purple-300" />
@@ -64,7 +87,7 @@ export const QuoteModal: React.FC = () => {
                 </div>
                 <button
                   onClick={() => setIsQuoteModalOpen(false)}
-                  className="p-1 rounded-full hover:bg-white/20 text-white"
+                  className="p-1 rounded-full hover:bg-white/20 text-white cursor-pointer"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -72,17 +95,16 @@ export const QuoteModal: React.FC = () => {
 
               {submitted ? (
                 <div className="p-12 text-center flex flex-col items-center">
-                  <CheckCircle2 className="w-16 h-16 text-green-500 mb-4" />
-                  <h4 className="text-2xl font-bold text-gray-800 mb-2">Thank You!</h4>
+                  <CheckCircle2 className="w-16 h-16 text-green-500 mb-4 animate-bounce" />
+                  <h4 className="text-2xl font-bold text-gray-800 mb-2">Redirecting to WhatsApp...</h4>
                   <p className="text-gray-600 text-sm">
-                    Your quote request has been received. A Sign Today specialist will get back to
-                    you within 2 business hours.
+                    Your quote details have been generated. Click send on WhatsApp to submit directly to +44 7709 135506!
                   </p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="p-6 space-y-4 overflow-y-auto">
-                  <p className="text-sm text-gray-600">
-                    Tell us about your project dimensions, substrate requirements, and timeline.
+                  <p className="text-xs sm:text-sm text-gray-600">
+                    Fill in your project details below. Submitting will launch WhatsApp to send your quote directly to our team at <span className="font-semibold text-green-700">+44 7709 135506</span>.
                   </p>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -101,10 +123,9 @@ export const QuoteModal: React.FC = () => {
                     </div>
                     <div>
                       <label className="block text-xs font-semibold text-gray-700 mb-1">
-                        Email Address *
+                        Email Address (Optional)
                       </label>
                       <input
-                        required
                         type="email"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -117,13 +138,13 @@ export const QuoteModal: React.FC = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-xs font-semibold text-gray-700 mb-1">
-                        Phone Number
+                        Phone / WhatsApp
                       </label>
                       <input
                         type="tel"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        placeholder="0330 010 3521"
+                        placeholder="+44 7709 135506"
                         className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-purple-600"
                       />
                     </div>
@@ -183,9 +204,9 @@ export const QuoteModal: React.FC = () => {
                   <div className="pt-2">
                     <button
                       type="submit"
-                      className="w-full btn-purple py-3 rounded-lg font-bold flex items-center justify-center gap-2 shadow-md"
+                      className="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-bold flex items-center justify-center gap-2 shadow-md transition cursor-pointer text-sm"
                     >
-                      <Send className="w-4 h-4" /> Submit Quote Request
+                      <MessageCircle className="w-4 h-4 fill-white/20" /> Send Quote Request via WhatsApp
                     </button>
                   </div>
                 </form>

@@ -17,14 +17,14 @@ export const CategoryNav: React.FC = () => {
     const id = href.replace('#', '');
     const element = document.getElementById(id);
     if (element) {
-      const yOffset = -75;
+      const yOffset = -110;
       const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: 'smooth' });
     }
   };
 
   return (
-    <nav className="bg-[#4a148c] text-white py-3 sm:py-4 px-4 overflow-x-auto sticky top-0 z-30 shadow-md scrollbar-none">
+    <nav className="bg-[#4a148c] text-white py-3 sm:py-4 px-4 overflow-x-auto shadow-md scrollbar-none">
       <ul className="flex justify-start md:justify-center min-w-max gap-6 sm:gap-8 text-xs sm:text-sm font-semibold px-2">
         {categories.map((cat) => (
           <li key={cat.href}>
